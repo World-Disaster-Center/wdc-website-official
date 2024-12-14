@@ -35,7 +35,7 @@ function TeamPage() {
       bio: "",
       email: "",
       socials: [],
-      name: "Zainab Akhtar",
+      name: "Zainab A.",
       image: zainab,
     },
     {
