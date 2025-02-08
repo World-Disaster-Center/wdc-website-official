@@ -210,11 +210,10 @@ import Section from "./Section";
 function NewFooter() {
   return (
     <Section crosses>
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between flex-wrap gap-4 items-start">
-
+      <div className="container">
+        <div className="ml-10 md:ml-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-8 md:gap-y-8">
           {/* Logo Section */}
-          <div className="mb-6 sm:mb-0">
+          <div className="md:col-span-1 mb-6">
             <img
               src={WDCLogo}
               alt="World Disaster Center Logo"
@@ -223,7 +222,7 @@ function NewFooter() {
           </div>
 
           {/* Contact Section */}
-          <div className="mb-6 sm:mb-0">
+          <div className="md:col-span-2 mb-6">
             <h4 className="font-bold uppercase mb-4">Get in Touch</h4>
             <p>office@worlddisastercenter.org</p>
             <div className="mt-4 flex items-center gap-2">
@@ -319,7 +318,7 @@ function NewFooter() {
           </div>
 
           {/* Quick Links Section */}
-          <div className="mb-6 sm:mb-0">
+          <div className="md:col-span-1 mb-6">
             <h4 className="font-bold uppercase mb-4">Quick Links</h4>
             <ul>
               <li>
@@ -341,7 +340,7 @@ function NewFooter() {
           </div>
 
           {/* Resources Section */}
-          <div className="mb-6 sm:mb-0">
+          <div className="md:col-span-1 mb-6">
             <h4 className="font-bold uppercase mb-4">Resources</h4>
             <ul>
               <li>
@@ -363,7 +362,7 @@ function NewFooter() {
           </div>
 
           {/* Headquarters Section */}
-          <div className="mb-6 sm:mb-0">
+          <div className="md:col-span-3 mb-6">
             <h4 className="font-bold uppercase mb-4">Headquarters</h4>
             <p className="text-sm mb-2 text-white-400">
               1660 Madison Avenue, 10029 New York, United States
@@ -379,26 +378,32 @@ function NewFooter() {
 
         {/* Footer Bottom Section */}
         <div className="border-t border-gray-600 mt-6 pt-4">
-          <div className="text-sm text-white">
-            <p className="mb-2">
-              © {new Date().getFullYear()}{" "}
-              <Link to="/" className="hover:text-blue-500 hover:underline">
-                World Disaster Center
-              </Link>
-              <span className="mx-2">•</span>
-              World Disaster Center is a 501(c)(3) tax-exempt organization
-              <span className="mx-2">•</span>
-              <Link to="/policy" className="hover:text-blue-500 hover:underline">
-                Privacy Policy
-              </Link>
-              <span className="mx-2">•</span>
-              <Link
-                to="/terms-conditions"
-                className="hover:text-blue-500 hover:underline"
-              >
-                Terms & Conditions
-              </Link>
-            </p>
+          <div className="text-sm text-white text-center">
+            <div className="flex flex-col items-center gap-2">
+              <p className="flex items-center justify-center flex-wrap gap-x-2">
+                © {new Date().getFullYear()}{" "}
+                <Link to="/" className="hover:text-blue-500 hover:underline">
+                  World Disaster Center
+                </Link>
+                <span>•</span>
+                World Disaster Center is a 501(c)(3) tax-exempt organization
+              </p>
+              <p className="flex items-center justify-center flex-wrap gap-x-2">
+                <Link
+                  to="/policy"
+                  className="hover:text-blue-500 hover:underline"
+                >
+                  Privacy Policy
+                </Link>
+                <span>•</span>
+                <Link
+                  to="/terms-conditions"
+                  className="hover:text-blue-500 hover:underline"
+                >
+                  Terms & Conditions
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </div>

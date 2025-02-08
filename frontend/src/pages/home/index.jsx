@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonGradient from "../../assets/svg/ButtonGradient";
 import Benefits from "../../components/Benefits";
 import Solutions from "../../components/CaseStudies";
@@ -38,44 +38,54 @@ const HomePage = () => {
         prevSection === "Solutions" ? "GlobalProducts" : "Solutions"
       );
     };
+    
+  useEffect(() => {
+      const interval = setInterval(()=>{
+        setSolutionsSection((prevSection)=>
+          prevSection === "Solutions" ? "GlobalProducts" : "Solutions"
+        )
+      },10000)
+      return ()=> clearInterval(interval)
+    },[])
+
+
 
   return (
     <>
-    {/* <TopHero/> */}
+      {/* <TopHero/> */}
       <Hero />
       {/* <Slideshow /> */}
       <VideoSection />
       <Benefits />
-      
+
       <div style={styles.sectionContainer}>
         {solutionsSection === "Solutions" ? <Solutions /> : <GlobalProducts />}
 
-        {/* Left Arrow */}
-        <button
-          onClick={handleSolutionsSwitch}
-          style={{ ...styles.arrowButton, ...styles.leftArrow }}
-          onMouseEnter={(e) => (e.target.style.color = "#007BFF")}
-          onMouseLeave={(e) => (e.target.style.color = "#333")}
-        >
-          ←
-        </button>
-
-        {/* Right Arrow */}
-        <button
-          onClick={handleSolutionsSwitch}
-          style={{ ...styles.arrowButton, ...styles.rightArrow }}
-          onMouseEnter={(e) => (e.target.style.color = "#007BFF")}
-          onMouseLeave={(e) => (e.target.style.color = "#333")}
-        >
-          →
-        </button>
+        {/* Indicator Dots */}
+        <div style={styles.dotsContainer}>
+          <button
+            onClick={handleSolutionsSwitch}
+            style={{
+              ...styles.dot,
+              background: solutionsSection === "Solutions" ? "#007BFF" : "#ccc",
+            }}
+          />
+          <button
+            onClick={handleSolutionsSwitch}
+            style={{
+              ...styles.dot,
+              background:
+                solutionsSection === "GlobalProducts" ? "#007BFF" : "#ccc",
+            }}
+          />
+        </div>
       </div>
 
       {/* <NewsGrid/> */}
 
       <div style={styles.sectionContainer}>
         {activeSection === "News" ? <News /> : <Events />}
-        
+
         {/* Left Arrow */}
         <button
           onClick={() => handleSwitchSection("left")}
@@ -113,6 +123,7 @@ const styles = {
   sectionContainer: {
     position: "relative",
     marginBottom: "30px",
+    paddingBottom: "50px",
   },
   arrowButton: {
     position: "absolute",
@@ -141,7 +152,25 @@ const styles = {
     top: "50%",
     transform: "translateY(-50%)",
   },
-
+  dotsContainer: {
+    position: "absolute",
+    bottom: "10px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    display: "flex",
+    gap: "10px",
+    zIndex: 10,
+    padding: "10px",
+    borderRadius: "20px",
+  },
+  dot: {
+    width: "12px",
+    height: "12px",
+    borderRadius: "50%",
+    border: "none",
+    cursor: "pointer",
+    transition: "background-color 0.3s ease",
+  },
 };
 
 export default HomePage;
