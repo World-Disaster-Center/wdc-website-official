@@ -27,8 +27,8 @@ import EagleProject from "./pages/project/eagle";
 import { useEffect, useState } from "react";
 import TeamPage from "./components/team.jsx";
 import PartnersPage from "./components/partner";
-import MembershipPage from './pages/membership/index.jsx'
-import ImpactPage from './pages/impact/index.jsx'
+import MembershipPage from "./pages/membership/index.jsx";
+import ImpactPage from "./pages/impact/index.jsx";
 import ProfileForm from "./pages/profileForm";
 import UpdateProfile from "./pages/updateProfile";
 import TypePage from "./pages/typePage";
@@ -47,13 +47,14 @@ import Products from "./pages/product/index.jsx";
 import News from "./pages/news/index.jsx";
 import Events from "./pages/events/index.jsx";
 import CookieConsent from "./components/CookieConsent.jsx";
-import Story from './pages/story/index.jsx'
-import Africa from './pages/where_we_work/africa/index.jsx'
+import Story from "./pages/story/index.jsx";
+import Africa from "./pages/where_we_work/africa/index.jsx";
 
 import NewsDetail from "./components/NewsDetail.jsx";
 import EventsDetail from "./components/EventsDetail.jsx";
 
 import ProductDetail from "./components/ProductDetail.jsx";
+import PartnerWithUs from "./pages/partnerWithUs/index.jsx";
 
 const App = () => {
   const location = useLocation();
@@ -64,7 +65,7 @@ const App = () => {
   }, [location]);
   useEffect(() => {
     setLoading(true);
-     
+
     setTimeout(() => {
       setLoading(false);
     }, 1000);
@@ -102,7 +103,8 @@ const App = () => {
           {/* <Route exact path="/blogs2" element={<BlogsPage />} /> */}
           <Route path="/blog/:id" element={<SingleBlogDisplay />} />
           <Route exact path="/about" element={<AboutPage />} />
-          <Route path="/about/what-we-offer" element={<WhatWeOfferPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/about/partner-with-us" element={<PartnerWithUs />} />
           <Route path="/about/story" element={<Story />} />
           <Route path="/about/vision" element={<VisionPage />} />
           <Route path="/about/values" element={<OurValuePage />} />
@@ -123,7 +125,6 @@ const App = () => {
           <Route path="/policy" element={<PrivacyPolicyPage />} />
           <Route path="/membership" element={<MembershipPage />} />
 
-
           <Route path="/News" element={<News />} />
           <Route path="/Events" element={<Events />} />
 
@@ -134,20 +135,22 @@ const App = () => {
           <Route path="/profile" element={<ProfilePage />} />
 
           {/* Dynamic route for cases */}
-        <Route path="/cases/:caseName" element={<CaseDetail />} />
+          <Route path="/cases/:caseName" element={<CaseDetail />} />
           <Route path="*" element={<NotfoundPage />} />
 
-        <Route path="/News/:newsName" element= {<NewsDetail />} />
-        <Route path="/global-products/:productName" element= {<ProductDetail />} />
-        <Route path="/Events/:eventsName" element= {<EventsDetail />} />
+          <Route path="/News/:newsName" element={<NewsDetail />} />
+          <Route
+            path="/global-products/:productName"
+            element={<ProductDetail />}
+          />
+          <Route path="/Events/:eventsName" element={<EventsDetail />} />
         </Routes>
-      
 
         <ToastContainer />
         <NewFooter />
         {/* <Footer /> */}
       </div>
-      <CookieConsent/>
+      <CookieConsent />
       <ChatBotComponent />
       <ButtonGradient />
     </>
