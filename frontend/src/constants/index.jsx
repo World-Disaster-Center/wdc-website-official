@@ -14,7 +14,6 @@ import {
   sliders04,
   telegram,
   twitter,
-  yourlogo,
 } from "../assets";
 
 import Volcano from "../assets/volcano.png";
@@ -23,8 +22,6 @@ import Wave from "../assets/wave.png";
 import Mud from "../assets/mud.png";
 import Floods from "../assets/floods.png";
 import Fire from "../assets/fire.png";
-import Earthquake from "../assets/earthquake.png";
-import desert from "../assets/desert.png";
 import Flooding from "../assets/floooding.png";
 import avielon from "../assets/logos/Avielon_logo.png";
 import ghtc from "../assets/logos/GHTC_logo.jpeg";
@@ -44,7 +41,6 @@ import burohelp from "../assets/logos/burohelp_logo.png";
 import canadagovernment from "../assets/logos/govermentofcanada_logo.png";
 import ada from "../assets/logos/ada_logo.png";
 import esa from "../assets/logos/esa_logo.png";
-// import raindrop from '../assets/'
 
 export const navigation = [
   {
@@ -99,8 +95,16 @@ export const heroIcons = [homeSmile, file02, searchMd, plusSquare];
 
 export const notificationImages = [];
 
-// export const companyLogos = [ghtc, avielon, pui, opendeved, ada];
-export const strategicpartner_companyLogos = [ canadagovernment, esa, orange, gcse, pui, kaizenmind, burohelp,rapidgrowth];
+export const strategicpartner_companyLogos = [
+  canadagovernment,
+  esa,
+  orange,
+  gcse,
+  pui,
+  kaizenmind,
+  burohelp,
+  rapidgrowth,
+];
 export const collaborator_companyLogos = [ada, codeforafrica, opendeved];
 export const technicalsponsor_companyLogos = [google, esri];
 export const implmentationpartner_companyLogos = [undp, rha, ghtc];
@@ -323,7 +327,6 @@ export const socials = [
   },
 ];
 
-
 export const dropdownData = [
   {
     title: "About Us",
@@ -334,7 +337,7 @@ export const dropdownData = [
       // "Our Values": "/about/values",
       "Our Team": "/about/team",
       "Our Partners": "/about/partners",
-      // "Partner With Us": "/about/partnerwithus",
+      "Partner With Us": "/about/partner-with-us",
     },
   },
   // {
@@ -365,7 +368,7 @@ export const dropdownData = [
     routings: {
       Events: "/Events",
       News: "/News",
-      Newsletter:  "/newsletter",
+      Newsletter: "/newsletter",
     },
   },
   {
@@ -373,9 +376,9 @@ export const dropdownData = [
     routings: {
       // "Get Involved":"/",
       "Donate & Ways to Give": "/donate",
-      Careers:"/careers",
+      Careers: "/careers",
       "Contact Us": "/contact",
     },
   },
-  
 ];
+

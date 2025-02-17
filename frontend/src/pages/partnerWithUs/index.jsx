@@ -50,6 +50,7 @@ export default function PartnerWithUs() {
         toast.error(`Error: ${err.text}`);
       });
   };
+
   return (
     <div className="justify-center items-center flex flex-col p-8 mt-10 mx-28">
       <h1 className="text-3xl font-bold mb-6 text-blue-400">
