@@ -21,8 +21,8 @@ export const io = new Server(server);
 
 //import routes
 import errorHandler from "./middleware/error";
-import authRoutes from "./routes/authRoutes";
-import postRoute from "./routes/postRoute";
+import localAuthRoutes from "./routes/localAuthRoutes"
+import professionalAuthRoutes from "./routes/professionalAuthRoutes"
 
 //database connection
 mongoose
@@ -79,8 +79,8 @@ app.use(limiter);
 app.use(hpp());
 
 //ROUTES
-app.use("/api/users", authRoutes);
-app.use("/api/posts", postRoute);
+app.use("/api/local", localAuthRoutes);
+app.use("/api/professional", professionalAuthRoutes);
 
 __dirname = path.resolve();
 
