@@ -148,22 +148,22 @@ interface IProfessional extends Document {
   }[];
   attachments?: string[];
   comparePassword(enteredPassword: string): Promise<boolean>;
-  setJwtToken(): void;
+  setJwtToken({userId}:userId, res: Response): void;
 }
 
 const ProfessionalSchema: Schema<IProfessional> = new Schema<IProfessional>({
   firstName: { type: String, required: true, trim: true },
   middleName: { type: String, trim: true },
   lastName: { type: String, required: true, trim: true },
-  dateOfBirth: { type: Date, required: true },
+  dateOfBirth: { type: Date },
   phoneNumber: { type: [String], required: true },
   email: { type: [String], required: true, unique: true },
   password: { type: String, required: true },
   profilePhoto: { type: String },
   linkedIn: { type: String },
-  sex: { type: String, required: true, enum: ['Male', 'Female', 'Other'] },
-  maritalStatus: { type: String, required: true, enum: ['Single', 'Married', 'Divorced', 'Other'] },
-  dependents: { type: Number, required: true },
+  sex: { type: String, enum: ['Male', 'Female', 'Other'] },
+  maritalStatus: { type: String, enum: ['Single', 'Married', 'Divorced', 'Other'] },
+  dependents: { type: Number },
   countryOfResidence: [{
     line1: { type: String, required: true },
     line2: { type: String },
@@ -286,13 +286,14 @@ ProfessionalSchema.pre('save', async function (next) {
   next();
 })
 ProfessionalSchema.methods.setJwtToken = function ({userId}:userId, res: Response): void {
+  console.log(userId);
   const token = jwt.sign({ userId }, process.env.JWTSK || "17181919", { expiresIn: '1d' });
   res.cookie('jwt', token, {
-      // httpOnly: true,
+      httpOnly: true,
       // secure: process.env.NODE_ENV === 'production',
       // sameSite: 'strict',
-      // maxAge: 24 * 60 * 60 * 1000
-  });
+      maxAge: 24 * 60 * 60 * 1000
+  });//add renewal token
 };
 
 const Professional: Model<IProfessional> = mongoose.model<IProfessional>('Professional', ProfessionalSchema);
