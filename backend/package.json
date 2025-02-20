@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "npx nodemon server.ts"
@@ -13,7 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.20.2",
     "cloudinary": "^1.36.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -32,7 +30,6 @@
     "nodemon": "^3.1.9",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "socket.io": "^4.6.1",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
