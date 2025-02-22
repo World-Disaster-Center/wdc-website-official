@@ -89,7 +89,6 @@ export const loginProfessional: RequestHandler = async (req: Request, res: Respo
         res.status(400).json(error)
     }
 }
-//edit profile function
 export const updateProfileProfessional: RequestHandler = async (req:Request, res:Response):Promise<void> => {
     try{
         //Extend type user to include _id

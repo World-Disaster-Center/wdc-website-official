@@ -11,7 +11,7 @@ async function protectRoute(req:Request,res:Response,next:NextFunction) {
             res.status(401).json({error:"Not Authorized"})
             return
         }
-        req.user = await User.findOne({_id: decoded.userId}).select("-password") || undefined
+        req.user = await User.findOne({_id: decoded.userId}) || undefined
         next()
     } else {
         res.status(401).json({error:"Not Authorized"})
