@@ -1,33 +1,7 @@
 import { Request, RequestHandler, Response } from "express";
-import { sendVerificationCode, verifyCode } from "../twilio/twilio";
+import { verifyCode } from "../twilio/twilio";
 import Local from "../models/localModel";
-export const preRegisterLocal:RequestHandler = async (req: Request, res: Response):Promise<void> => {
-    try{
-        //Get phoneNumber from request
-        const { phoneNumber } = req.body;
-        //Checks if phoneNumber field is filled
-        if (!phoneNumber) {
-            res.status(403).json("Please fill all the mandatory fields");
-            return;
-        }
-        //Phone Number Syntax Validation
-        const phoneRegexTest = /^(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?$/
-        if(!phoneRegexTest.test(phoneNumber)){
-            res.status(403).json("Please check your phone number")
-            return;
-        } 
-        //Check if user exist by checking phoneNumber and if that phoneNumber is verified
-        const userExist = await Local.findOne({phoneNumber: {$elemMatch: {number: phoneNumber, verified: true}}});
-        if (userExist) {
-            res.status(400).json("PhoneNumber already registered to another account");
-            return;
-        }
-        //Send verification code
-        await sendVerificationCode(phoneNumber,res);
-    } catch (error) {
-        res.status(400).json(error);
-    }
-};
+
 export const registerLocal:RequestHandler = async (req: Request, res: Response):Promise<void> => {
     //Destructure request body
     const { firstName, lastName, phoneNumber, code } = req.body;
@@ -66,34 +40,6 @@ export const registerLocal:RequestHandler = async (req: Request, res: Response):
     } catch (error) {
         //Send error
         res.json(error);
-    }
-};
-
-export const preLoginLocal = async (req: Request, res: Response):Promise<void> => {
-    try {
-        //Get phoneNumber from request
-        const { phoneNumber } = req.body;
-        //Checks if phoneNumber field is filled
-        if (!phoneNumber) {
-            res.status(403).json("Please fill all the mandatory fields");
-            return;
-        }
-        //Phone Number Syntax Validation
-        const phoneRegexTest = /^(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?$/
-        if(!phoneRegexTest.test(phoneNumber)){
-            res.status(403).json("Please check your phone number")
-            return;
-        } 
-        //Check if user exist by checking phoneNumber and if that phoneNumber is verified
-        const user = await Local.findOne({ phoneNumber: {$elemMatch: {number: phoneNumber, verified: true}} });
-        if (!user) {
-            res.status(400).json("Invalid credentials");
-            return;
-        }
-        //If user exist send verification code
-        await sendVerificationCode(phoneNumber,res);
-    } catch (error) {
-        res.status(400).json(error)
     }
 };
 export const loginLocal = async (req: Request, res: Response):Promise<void> => {
@@ -136,7 +82,7 @@ export const updateProfileLocal = async (req: Request, res: Response):Promise<vo
         //Destructure request body
         const updateData = req.body;
         //Remove unAuthorized fields
-        const unAuthorizedFields = ["firstName", "lastName", "email", "phoneNumber", "profileStatus", "password", "role", "createdAt", "updatedAt", "__v",];
+        const unAuthorizedFields = ["email", "phoneNumber", "profileStatus", "password", "role", "createdAt", "updatedAt", "__v",];
         for (const field of unAuthorizedFields) {
             delete updateData[field];
         }

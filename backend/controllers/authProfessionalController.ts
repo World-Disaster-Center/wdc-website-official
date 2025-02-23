@@ -104,7 +104,7 @@ export const updateProfileProfessional: RequestHandler = async (req:Request, res
         //Destructure request body
         const updateData = req.body;
         //Remove unAuthorized fields
-        const unAuthorizedFields = ["firstName", "lastName", "email", "phoneNumber", "profileStatus", "password", "role", "createdAt", "updatedAt", "__v",];
+        const unAuthorizedFields = ["email", "phoneNumber", "profileStatus", "password", "role", "createdAt", "updatedAt", "__v",];
         for (const field of unAuthorizedFields) {
             delete updateData[field];
         }

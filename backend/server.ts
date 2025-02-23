@@ -11,7 +11,7 @@ import dotenv from "dotenv";
 //Import Routes
 import localAuthRoutes from "./routes/localAuthRoutes"
 import professionalAuthRoutes from "./routes/professionalAuthRoutes"
-
+import twilioRoutes from "./routes/twilioRoutes"
 
 const app = express(); //Initialize Express Server
 dotenv.config(); //Initialize dotenv
@@ -40,6 +40,7 @@ app.use(helmet()); // Security
 //ROUTES
 app.use("/api/local", localAuthRoutes);
 app.use("/api/professional", professionalAuthRoutes);
+app.use("/api/twilio", twilioRoutes);
 
 //Default Route
 app.get("/", (req, res) => {
