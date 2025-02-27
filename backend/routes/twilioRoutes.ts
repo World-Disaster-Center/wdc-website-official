@@ -1,8 +1,9 @@
 import express from "express";
-import { sendVerificationCode } from "../controllers/twilioController";
+import { sendSMSVerificationCode, sendEmailVerificationCode } from "../controllers/twilioController";
 
 const router = express.Router();
 
-router.post("/sendVerificationCode", sendVerificationCode);
+router.post("/sendSMSVerificationCode", sendSMSVerificationCode);
+router.post("/sendEmailVerificationCode", sendEmailVerificationCode);
 
 export default router

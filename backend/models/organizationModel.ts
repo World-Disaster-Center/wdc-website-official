@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
 
-interface Organization extends Document {
+interface IOrganization extends Document {
     firstName: string;
     lastName: string;
     email: string;
@@ -11,7 +11,7 @@ interface Organization extends Document {
     message: string;
 }
 
-const OrganizationSchema: Schema<Organization> = new mongoose.Schema({
+const OrganizationSchema: Schema<IOrganization> = new mongoose.Schema<IOrganization>({
     firstName: {
         type: String,
         required: true,
@@ -41,4 +41,6 @@ const OrganizationSchema: Schema<Organization> = new mongoose.Schema({
     },
 });
 
-export const Organization: Model<Organization> = mongoose.model<Organization>('Organization', OrganizationSchema);
+const Organization: Model<IOrganization> = mongoose.model<IOrganization>('Organization', OrganizationSchema);
+
+export default Organization;

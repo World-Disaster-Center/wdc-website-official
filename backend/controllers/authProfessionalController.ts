@@ -9,7 +9,7 @@ export const registerProfessional: RequestHandler = async (req: Request, res: Re
             password, 
             firstName, 
             lastName,
-            phoneNumber 
+            phoneNumber
         } = req.body;
 
         //Check if all fields are filled
@@ -48,6 +48,7 @@ export const registerProfessional: RequestHandler = async (req: Request, res: Re
             firstName, 
             lastName,
             phoneNumber,
+            role: 'Professional'
         });
         //Set JWT Token
         newUser.setJwtToken({userId: newUser._id}, res);

@@ -13,6 +13,7 @@ interface IProfessional extends Document {
   phoneNumber: string[];
   email: string[];
   password: string;
+  role: string;
   profileStatus: string;
   middleName?: string;
   dateOfBirth?: Date;
@@ -122,6 +123,7 @@ const ProfessionalSchema: Schema<IProfessional> = new Schema<IProfessional>({
   email: { type: [String], required: true, unique: true },
   profileStatus: { type: String, enum: ['Incomplete', 'Inprogress', 'Completed'], default: 'Incomplete' },
   password: { type: String, required: true },
+  role: { type: String, required: true, default: 'Professional' },
   middleName: { type: String, trim: true, default: '' },
   dateOfBirth: { type: Date, default: null },
   profilePhoto: { type: String, default: '' },

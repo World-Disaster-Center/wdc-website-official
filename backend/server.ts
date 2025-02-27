@@ -8,10 +8,13 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import hpp from "hpp";
 import dotenv from "dotenv";
+
 //Import Routes
 import localAuthRoutes from "./routes/localAuthRoutes"
 import professionalAuthRoutes from "./routes/professionalAuthRoutes"
 import twilioRoutes from "./routes/twilioRoutes"
+import contactRoutes from "./routes/contactRoutes"
+import organizationRoutes from "./routes/organizationRoutes"
 
 const app = express(); //Initialize Express Server
 dotenv.config(); //Initialize dotenv
@@ -41,6 +44,8 @@ app.use(helmet()); // Security
 app.use("/api/local", localAuthRoutes);
 app.use("/api/professional", professionalAuthRoutes);
 app.use("/api/twilio", twilioRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/organization", organizationRoutes);
 
 //Default Route
 app.get("/", (req, res) => {

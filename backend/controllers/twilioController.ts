@@ -1,7 +1,7 @@
 import express, { RequestHandler } from "express";
-import { sendVerificationCode as sendVerification } from "../twilio/twilio";
+import { sendSMSVerificationCode as sendVerification, sendVerificationEmail } from "../twilio/twilio";
 
-export const sendVerificationCode:RequestHandler = async (req: express.Request, res: express.Response):Promise<void> => {
+export const sendSMSVerificationCode:RequestHandler = async (req: express.Request, res: express.Response):Promise<void> => {
   try{
     const { phoneNumber } = req.body;
     if (!phoneNumber) {
@@ -15,6 +15,26 @@ export const sendVerificationCode:RequestHandler = async (req: express.Request, 
         return;
     } 
     await sendVerification(phoneNumber, res);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+}
+export const sendEmailVerificationCode = async (req: express.Request, res: express.Response):Promise<void> => {
+  try{
+    const { email } = req.body;
+
+    const emailRegexTest = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/; 
+    if(!emailRegexTest.test(email)){
+        res.status(403).json("Please check your email")
+        return;
+    }
+
+    if (!email) {
+      res.status(403).json("Please fill all the mandatory fields");
+      return;
+    }
+
+    await sendVerificationEmail(email, res);
   } catch (error) {
     res.status(400).json(error);
   }

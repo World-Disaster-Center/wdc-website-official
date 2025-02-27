@@ -1,5 +1,5 @@
 import { Request, RequestHandler, Response } from "express";
-import { verifyCode } from "../twilio/twilio";
+import { checkSMSVerificationCode } from "../twilio/twilio";
 import Local from "../models/localModel";
 
 export const registerLocal:RequestHandler = async (req: Request, res: Response):Promise<void> => {
@@ -11,7 +11,7 @@ export const registerLocal:RequestHandler = async (req: Request, res: Response):
             return;
         }
         // Check if the verification code the user provided is valid
-        const validCode = await verifyCode(phoneNumber, code)
+        const validCode = await checkSMSVerificationCode(phoneNumber, code)
         if(!validCode){
             res.status(400).json("Invalid code");
             return;
@@ -47,7 +47,7 @@ export const loginLocal = async (req: Request, res: Response):Promise<void> => {
     const { phoneNumber, code } = req.body;
     try {
         //Check if the verification code the user provided is valid
-        const validCode = await verifyCode(phoneNumber, code)
+        const validCode = await checkSMSVerificationCode(phoneNumber, code)
         if(!validCode){
             res.status(400).json("Invalid code");
             return;
