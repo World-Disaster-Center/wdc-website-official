@@ -5,6 +5,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import HomePage from "./pages/home";
 import NotfoundPage from "./pages/notfound";
 import SignIn from "./pages/signin";
+import SiteMap from "./pages/sitemap";
 
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -124,7 +125,7 @@ const App = () => {
           <Route path="/terms-conditions" element={<TermsAndConditionPage />} />
           <Route path="/policy" element={<PrivacyPolicyPage />} />
           <Route path="/membership" element={<MembershipPage />} />
-
+          <Route path="/sitemap" element={<SiteMap />} />
 
           <Route path="/News" element={<News />} />
           <Route path="/Events" element={<Events />} />

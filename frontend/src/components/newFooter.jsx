@@ -337,6 +337,11 @@ function NewFooter() {
                   Solutions
                 </Link>
               </li>
+              <li>
+                <Link to="/sitemap" className="hover:text-gray-300">
+                  Sitemap
+                </Link>
+              </li>
             </ul>
           </div>
 

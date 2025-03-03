@@ -5,12 +5,12 @@ import { caseStudies } from '../assets/data/case_stadies';
 import RequestDemo from './requestDemo';
 import  PICTURE  from '../assets/images/Michael_picture.jpeg'
 import { Link } from 'react-router-dom';
-
+import { newsItemsSpecial } from '../assets/data/news';
 const NewsDetail = () => {
 
   const { newsName } = useParams();
   const location = useLocation();
-  const { item } = location.state;
+  const item = location.state?.item || newsItemsSpecial.find(n => n.title === newsName);
   if (!item) {
     return <Navigate to="/404" />;
   }
@@ -22,7 +22,7 @@ const NewsDetail = () => {
   console.log(item)
 
     return (
-        <div className='justify-center items-center flex flex-col p-8 mt-10 mx-28'>
+        <div className='justify-center items-center flex flex-col p-8 mt-10 md:mx-12 lg:mx-28'>
           <div className='border-2 mb-6 border-gray-400 rounded-full w-full'></div>
           <h1 className='text-5xl text-center font-bold mb-6'> 
             {item.title}
@@ -30,7 +30,7 @@ const NewsDetail = () => {
           <div className='border-2 mb-4 border-gray-400 rounded-full w-full'>
           </div>
 
-          <div className='w-full px-32 m-8 mt-0'>
+          <div className='w-full md:px-12 lg:px-32 m-8 mt-0'>
             {
               item.doc.map((block, index) => {
                 switch (block.type) {
